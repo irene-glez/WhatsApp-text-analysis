@@ -128,8 +128,8 @@ if uploaded_file is not None:
         time = sts.monthly_timeline(selected_user, df)
         fig, ax = plt.subplots()
         ax.plot(time['Time'], time['Message'], color='blue')
-        ax.tick_params(labelsize= 10)
-        plt.xticks(fontsize= 11, rotation= 'vertical')
+        ax.tick_params(labelsize= 9)
+        plt.xticks(fontsize= 9, rotation= 'vertical')
     
         plt.tight_layout()
         st.pyplot(fig)
