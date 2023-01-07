@@ -56,20 +56,20 @@ def preprocess(data):
     df['Message'] = df['Message'].apply(lambda text: get_string(text))
     df = df.drop(['user_messages'], axis=1)
 
-    #df = df[['Message', 'Date', 'User']]
+    df = df[['Message', 'Date', 'User']]
 
     # df = df.rename(columns={
     #                 'date': 'Date'})
 
     # splitting and type transformation  for all the info contained in the 'date' column with datetime:
 
-    # df['Only date'] = pd.to_datetime(df['Date']).dt.date
-    # df['Year'] = pd.to_datetime(df['Date']).dt.year
-    # df['Month_num'] = pd.to_datetime(df['Date']).dt.month
-    # df['Month'] = pd.to_datetime(df['Date']).dt.month_name()
-    # df['Day'] = pd.to_datetime(df['Date']).dt.day
-    # df['Day_name'] = pd.to_datetime(df['Date']).dt.day_name()
-    # df['Hour'] = pd.to_datetime(df['Date']).dt.hour
-    # df['Minute'] = pd.to_datetime(df['Date']).dt.minute
+    df['Only date'] = pd.to_datetime(df['Date']).dt.date
+    df['Year'] = pd.to_datetime(df['Date']).dt.year
+    df['Month_num'] = pd.to_datetime(df['Date']).dt.month
+    df['Month'] = pd.to_datetime(df['Date']).dt.month_name()
+    df['Day'] = pd.to_datetime(df['Date']).dt.day
+    df['Day_name'] = pd.to_datetime(df['Date']).dt.day_name()
+    df['Hour'] = pd.to_datetime(df['Date']).dt.hour
+    df['Minute'] = pd.to_datetime(df['Date']).dt.minute
 
-    # return df
+    return df
