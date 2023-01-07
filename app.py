@@ -81,7 +81,7 @@ if uploaded_file is not None:
             
             # two plots, one for each column
             fig, ax = plt.subplots()
-            col1, col2 = st.beta_columns(2)
+            col1, col2 = st.columns(2)
             with col1:
                 ax.bar(activity_count.index, activity_count.values, color='green')
                 plt.xticks(rotation='vertical')
@@ -135,7 +135,7 @@ if uploaded_file is not None:
         # Activity maps: days and months
         st.title('Mapas de actividad')
 
-        col1, col2 = st.beta_columns(2)
+        col1, col2 = st.columns(2)
 
         with col1:
 

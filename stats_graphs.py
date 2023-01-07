@@ -52,8 +52,15 @@ def create_wordcloud(selected_user, df):
 
     if selected_user != 'General':
         df = df[df['User'] == selected_user]
+    
+    # getting the stopwords
+
+    file = open('spanish_stopwords.txt', 'r')
+    stopwords = file.read()
+    stopwords = stopwords.split('\n')
+    
     # generate the cloud
-    wc = WordCloud(width=500, height=500,
+    wc = WordCloud(stopwords= stopwords, max_words= 100, width=500, height=500,
                    min_font_size=12, background_color='black')
     # cut and concatenate the words from the 'Message' column
     df_wc = wc.generate(df['Message'].str.cat(sep=" "))
@@ -73,8 +80,7 @@ def get_common_words(selected_user, df):
     if selected_user != 'General':
         df = df[df['User'] == selected_user]
 
-    timeline = df[(df['User'] != 'Group Notification') |
-              (df['User'] != '<Media omitted>')]
+    timeline = df[(df['User'] != 'Group Notification') | (df['User'] != '<Media omitted>')]
 
     words = []
 
