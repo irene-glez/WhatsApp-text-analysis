@@ -88,13 +88,16 @@ def get_common_words(selected_user, df):
 
     for message in df['Message']:
         emojis.extend([c for c in message if c in emoji.UNICODE_EMOJI['en']])
-
+        for word in emojis.split():
+            if word not in emojis:            
+                words.append(word)
+ 
 
     for message in timeline['Message']:
         for word in message.lower().split():
             if word not in stopwords:            
                 words.append(word)
-                words.remove(emojis)
+                
 
     top_20_w = pd.DataFrame(Counter(words).most_common(20))
     return top_20_w
