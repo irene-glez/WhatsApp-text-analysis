@@ -42,7 +42,7 @@ if uploaded_file is not None:
 
     # 
     selected_user = st.sidebar.selectbox(
-        'Mostrar análisis para ', user_list)
+        'Elije un usuario:', user_list)
 
     st.title('Análisis del chat de Whats App para ' + selected_user)
     if st.sidebar.button('Mostrar análisis'):
@@ -81,7 +81,7 @@ if uploaded_file is not None:
             
             # two plots, one for each column
             fig, ax = plt.subplots()
-            col1, col2(2)
+            col1, col2 = st.beta_columns(2)
             with col1:
                 ax.bar(activity_count.index, activity_count.values, color='green')
                 plt.xticks(rotation='vertical')
@@ -111,17 +111,17 @@ if uploaded_file is not None:
 
         st.title('Análisis de emojis')
 
-        col1, col2(2)
+        # col1, col2 = st.beta_columns(2)
 
-        # count
-        with col1:
-            st.dataframe(emoji_df)
-        # percentage
-        with col2:
-            emoji_count = list(emoji_df['Total'])
-            perlist = [(i/sum(emoji_count))*100 for i in emoji_count]
-            emoji_df['Porcentaje'] = np.array(perlist)
-            st.dataframe(emoji_df)
+        # # count
+        # with col1:
+        #     st.dataframe(emoji_df)
+        # # percentage
+        # with col2:
+        emoji_count = list(emoji_df['Total'])
+        perlist = [(i/sum(emoji_count))*100 for i in emoji_count]
+        emoji_df['Porcentaje'] = np.array(perlist)
+        st.dataframe(emoji_df)
 
         # Monthly timeline
         st.title('Actividad por mes')
@@ -135,7 +135,7 @@ if uploaded_file is not None:
         # Activity maps: days and months
         st.title('Mapas de actividad')
 
-        col1, col2(2)
+        col1, col2 = st.beta_columns(2)
 
         with col1:
 
