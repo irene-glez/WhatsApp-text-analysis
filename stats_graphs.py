@@ -2,11 +2,10 @@ import pandas as pd
 from collections import Counter
 from wordcloud import WordCloud
 from urlextract import URLExtract
-from nltk.corpus import stopwords
-import nltk
-nltk.download('stopwords')
+# from nltk.corpus import stopwords
+# import nltk
+# nltk.download('stopwords')
 import emoji
-
 
 
 
@@ -66,9 +65,9 @@ def get_common_words(selected_user, df):
 
     # getting the stopwords
 
-    # file = open('stop_hinglish.txt', 'r')
-    stopwords = stopwords.words('spanish')
-    # stopwords = stopwords.split('\n')
+    file = open('spanish_stopwords.txt', 'r')
+    stopwords = file.read()
+    stopwords = stopwords.split('\n')
 
     if selected_user != 'Overall':
         df = df[df['User'] == selected_user]
