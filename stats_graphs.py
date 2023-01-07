@@ -44,12 +44,13 @@ def fetch_activity_users(df):
 
     # percentage of total activity
     act_df = pd.DataFrame((df['User'].value_counts()/df.shape[0])*100)
+    act_df = act_df.rename(columns= {'User' : "%"})
     return count, act_df
 
 # Word Cloud
 def create_wordcloud(selected_user, df):
 
-    if selected_user != 'Overall':
+    if selected_user != 'General':
         df = df[df['User'] == selected_user]
     # generate the cloud
     wc = WordCloud(width=500, height=500,
@@ -69,7 +70,7 @@ def get_common_words(selected_user, df):
     stopwords = file.read()
     stopwords = stopwords.split('\n')
 
-    if selected_user != 'Overall':
+    if selected_user != 'General':
         df = df[df['User'] == selected_user]
 
     timeline = df[(df['User'] != 'Group Notification') |
@@ -88,7 +89,7 @@ def get_common_words(selected_user, df):
 # get the most used emojis
 def get_emoji_stats(selected_user, df):
 
-    if selected_user != 'Overall':
+    if selected_user != 'General':
         df = df[df['User'] == selected_user]
 
     emojis = []
@@ -103,7 +104,7 @@ def get_emoji_stats(selected_user, df):
 # user activity per month
 def monthly_timeline(selected_user, df):
 
-    if selected_user != 'Overall':
+    if selected_user != 'General':
         df = df[df['User'] == selected_user]
 
     timeline = df.groupby(['Year', 'Month_num', 'Month']).count()[
@@ -121,7 +122,7 @@ def monthly_timeline(selected_user, df):
 # activity per month
 def monthly_activity(selected_user, df):
 
-    if selected_user != 'Overall':
+    if selected_user != 'General':
         df = df[df['User'] == selected_user]
 
     return df['Month'].value_counts()
@@ -129,7 +130,7 @@ def monthly_activity(selected_user, df):
 # activity per week
 def weekly_activity(selected_user, df):
 
-    if selected_user != 'Overall':
+    if selected_user != 'General':
         df = df[df['User'] == selected_user]
 
     return df['Day_name'].value_counts()

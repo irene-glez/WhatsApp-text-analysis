@@ -52,7 +52,7 @@ if uploaded_file is not None:
             selected_user, df)
 
         # we create 4 columns for the stats (messages, words, media and links)
-        col1, col2, col3, col4 = st.beta_columns(4)
+        col1, col2, col3, col4 = st.columns(4)
 
         with col1:
             st.header('Nº de mensajes')
@@ -63,11 +63,11 @@ if uploaded_file is not None:
             st.title(num_words)
 
         with col3:
-            st.header('Nº de archivos compartidos')
+            st.header('Archivos enviados')
             st.title(media_omitted)
 
         with col4:
-            st.header('Nº de enlaces compartidos')
+            st.header('Enlaces enviados')
             st.title(links)
 
         # activity of the users
@@ -81,7 +81,7 @@ if uploaded_file is not None:
             
             # two plots, one for each column
             fig, ax = plt.subplots()
-            col1, col2 = st.beta_columns(2)
+            col1, col2(2)
             with col1:
                 ax.bar(activity_count.index, activity_count.values, color='green')
                 plt.xticks(rotation='vertical')
@@ -111,7 +111,7 @@ if uploaded_file is not None:
 
         st.title('Análisis de emojis')
 
-        col1, col2 = st.beta_columns(2)
+        col1, col2(2)
 
         # count
         with col1:
@@ -135,7 +135,7 @@ if uploaded_file is not None:
         # Activity maps: days and months
         st.title('Mapas de actividad')
 
-        col1, col2 = st.beta_columns(2)
+        col1, col2(2)
 
         with col1:
 
