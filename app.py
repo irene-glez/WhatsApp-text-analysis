@@ -44,7 +44,7 @@ if uploaded_file is not None:
     selected_user = st.sidebar.selectbox(
         'Elige un usuario y pulsa en "Mostrar análisis"', user_list)
 
-    st.title('Análisis del chat de Whats App' + selected_user)
+    st.title('Análisis del chat') # de Whats App' + selected_user)
     if st.sidebar.button('Mostrar análisis'):
 
         # getting the stats of the selected user
@@ -128,8 +128,8 @@ if uploaded_file is not None:
         time = sts.monthly_timeline(selected_user, df)
         fig, ax = plt.subplots()
         ax.plot(time['Time'], time['Message'], color='blue')
-        ax.tick_params(labelsize=10)
-        plt.xticks(rotation='vertical')
+        ax.tick_params(labelsize= 10)
+        plt.xticks(fontsize= 11, rotation= 'vertical')
     
         plt.tight_layout()
         st.pyplot(fig)
