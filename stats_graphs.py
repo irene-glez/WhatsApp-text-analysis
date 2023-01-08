@@ -84,13 +84,13 @@ def get_common_words(selected_user, df):
 
     words = []
 
-    emojis = []
+    #emojis = []
 
-    for message in df['Message']:
-        emojis.extend([c for c in message if c in emoji.UNICODE_EMOJI['en']])
-        for word in emojis:
-            if word not in emojis:            
-                words.append(word)
+    # for message in df['Message']:
+    #     emojis.extend([c for c in message if c in emoji.UNICODE_EMOJI['en']])
+    #     for word in emojis:
+    #         if word not in emojis:            
+    #             words.append(word)
  
 
     for message in timeline['Message']:
