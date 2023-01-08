@@ -102,7 +102,7 @@ def get_common_words(selected_user, df):
                            "]+", flags=re.UNICODE)
         return emoji_text.sub(r'', text)        
 
-    top_20_w = pd.DataFrame(Counter(words.apply(clean_emoji)).most_common(20))
+    top_20_w = pd.DataFrame(Counter(str(words).apply(clean_emoji)).most_common(20))
     return top_20_w
 
 # get the most used emojis
