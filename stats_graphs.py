@@ -90,7 +90,9 @@ def get_common_words(selected_user, df):
             if word not in stopwords: 
                 words.append(word)
 
-    emojis = re.compile("["
+    def clean_emoji(text):
+
+        emoji_text = re.compile("["
                            u"\U0001F600-\U0001F94F"  # emoticons
                            u"\U0001F300-\U0001F5FF"  # symbols & pictographs
                            u"\U0001F680-\U0001F6FF"  # transport & map symbols
@@ -98,9 +100,9 @@ def get_common_words(selected_user, df):
                            u"\U00002702-\U000027B0"
                            u"\U000024C2-\U0001F251"
                            "]+", flags=re.UNICODE)
-    emojis.sub(r'', words)         
+        return emoji_text.sub(r'', text)        
 
-    top_20_w = pd.DataFrame(Counter(words).most_common(20))
+    top_20_w = pd.DataFrame(Counter(words.apply(clean_emoji)).most_common(20))
     return top_20_w
 
 # get the most used emojis
