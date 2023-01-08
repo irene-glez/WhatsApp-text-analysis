@@ -83,7 +83,7 @@ def get_common_words(selected_user, df):
 
     timeline = df[(df['User'] != 'Group Notification') | (df['User'] != '<Media omitted>')]
 
-    timeline = timeline.astype(str).apply(lambda x: x.str.encode('ascii', 'ignore').str.decode('ascii'))
+    timeline = timeline.astype(str).apply(lambda x: x.str.encode('latin-1', 'ignore').str.decode('latin-1'))
 
     words = []
 
