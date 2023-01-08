@@ -93,21 +93,17 @@ def get_common_words(selected_user, df):
     #         if word not in emojis:            
     #             words.append(word)
  
-    emojis = re.compile("["
-                           u"\U0001F600-\U0001F94F"  # emoticons
-                           u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-                           u"\U0001F680-\U0001F6FF"  # transport & map symbols
-                           u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
-                           u"\U00002702-\U000027B0"
-                           u"\U000024C2-\U0001F251"
-                           "]+", flags=re.UNICODE)    
+    emojis = []
 
+    for message in df['Message']:
+        emojis.extend([c for c in message if c in emoji.UNICODE_EMOJI['en']])   
 
 
     for message in timeline['Message']:
         for word in message.lower().split():
-            if word not in stopwords and emojis:            
-                words.append(word)
+            if word not in stopwords: 
+                if word not in emojis:        
+                   words.append(word)
                 
 
     top_20_w = pd.DataFrame(Counter(words).most_common(20))
@@ -119,19 +115,10 @@ def get_emoji_stats(selected_user, df):
     if selected_user != 'General':
         df = df[df['User'] == selected_user]
 
-    # emojis = []
+    emojis = []
 
-    # for message in df['Message']:
-    #     emojis.extend([c for c in message if c in emoji.UNICODE_EMOJI['en']])
-
-    emojis = re.compile("["
-                           u"\U0001F600-\U0001F94F"  # emoticons
-                           u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-                           u"\U0001F680-\U0001F6FF"  # transport & map symbols
-                           u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
-                           u"\U00002702-\U000027B0"
-                           u"\U000024C2-\U0001F251"
-                           "]+", flags=re.UNICODE) 
+    for message in df['Message']:
+        emojis.extend([c for c in message if c in emoji.UNICODE_EMOJI['en']])
 
     emoji_df = pd.DataFrame(Counter(emojis).most_common(len(Counter(emojis))))
 
